@@ -1,0 +1,29 @@
+sudo: required 
+
+services: 
+
+  - docker 
+
+before_install: 
+
+  - docker build -t cloudnloud/iamshyfail:v1.0 . 
+
+script: 
+
+  - echo "$Git_pass" | docker login -u "$Git_username" --password-stdin 
+
+  - docker images 
+
+  - docker push cloudnloud/iamshyfail:v1.0 
+
+notifications: 
+
+  email: 
+
+    recipients: 
+
+      - info1@cloudnloud.com 
+
+    on_success: always 
+
+    on_failure: always 
